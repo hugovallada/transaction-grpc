@@ -7,14 +7,24 @@ option objc_class_prefix = "HLW";
 
 package com.github.hugovallada;
 
+import "google/protobuf/timestamp.proto";
+
 service TransactionService {
-  rpc send (TransactionRequest) returns (TransactionReply) {}
+  rpc find (TransactionGrpcRequest) returns (TransactionsGrpcResponse) {}
 }
 
-message TransactionRequest {
-  string name = 1;
+message TransactionGrpcRequest {
+  string creditCard = 1;
 }
 
-message TransactionReply {
-  string message = 1;
+message TransactionGrpcResponse {
+  string id = 1;
+  string creditCard = 2;
+  string value = 3;
+  string establishment = 4;
+  google.protobuf.Timestamp date = 5;
+}
+
+message TransactionsGrpcResponse{
+  repeated TransactionGrpcResponse transactions = 1;
 }

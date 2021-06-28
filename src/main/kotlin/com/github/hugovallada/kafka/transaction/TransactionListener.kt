@@ -1,14 +1,16 @@
 package com.github.hugovallada.kafka.transaction
 
+import com.github.hugovallada.transaction.TransactionRepository
 import io.micronaut.configuration.kafka.annotation.KafkaListener
 import io.micronaut.configuration.kafka.annotation.Topic
+import javax.inject.Inject
 
 @KafkaListener
-class TransactionListener {
+class TransactionListener(@Inject private val transactionRepository: TransactionRepository) {
 
     @Topic("transacoes")
     fun appendTransactions(transactionData: TransactionData){
-        println(transactionData.id)
+        transactionRepository.save(transactionData.toModel())
     }
 
 }

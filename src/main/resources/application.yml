@@ -3,11 +3,27 @@ micronaut:
     name: transaction
 datasources:
   default:
-    url: jdbc:postgresql://localhost:5432/grpc-proposta
+    url: jdbc:postgresql://localhost:5432/transaction-grpc
     driverClassName: org.postgresql.Driver
     username: postgres
     password: 'postgres'
     schema-generate: CREATE_DROP
     dialect: POSTGRES
+
+jpa:
+  default:
+    packages-to-scan:
+      - 'com.github.hugovallada'
+    properties:
+      hibernate:
+        hbm2ddl:
+          auto: none
+        show_sql: false
+flyway:
+  datasources:
+    default:
+      enabled: true
+      clean-schema: true # faz o create-drop
+
 kafka.bootstrap.servers: localhost:9092
-jpa.default.properties.hibernate.hbm2ddl.auto: update
+#jpa.default.properties.hibernate.hbm2ddl.auto: update
