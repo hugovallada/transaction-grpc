@@ -47,6 +47,8 @@ dependencies {
     runtimeOnly("com.fasterxml.jackson.module:jackson-module-kotlin")
 
     testImplementation("io.micronaut:micronaut-http-client")
+    testImplementation("io.kotest:kotest-assertions-core:4.6.0")
+
 
 }
 
